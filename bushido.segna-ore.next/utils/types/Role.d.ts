@@ -1,0 +1,1 @@
+type Role = "Coach" | "President"
