@@ -1,68 +1,69 @@
-import { getStringAsNumber, toDigitArray } from "./math-operations"
+import { toDigitArray } from "./math-operations"
 
-const splitMoneyString = (money: Money) => money.split('.')
-const extractEur: (money: Money) => Eur = (money) => splitMoneyString(money)[0] as Eur
-const extractCents: (money: Money) => Cents = (money) => splitMoneyString(money)[1] as Cents
+export const getMoneyObject: (money: Money) => MoneyObject = (money) => {
+	const sign = money.split('')[0] as NumberSign
+	const valueString = money.substring(1)
+	const eur = money.split('.')[0] as Eur
+	const cents = money.split('.')[1] as Cents
 
-export const getMoneyObject: (money: Money) => MoneyObject = (money) => ({
-	eur: extractEur(money),
-	cents: extractCents(money),
-})
-
-const getMoneyFromObject: (money: MoneyObject) => Money = (money) => `${money.eur}.${money.cents}`
-
-export const sumMoney = (first: Money, second: Money) => {
-	const sumCents = (first: MoneyObject, second: MoneyObject) => {
-		const firstCents = getStringAsNumber(first.cents)
-		const secondCents = getStringAsNumber(second.cents)
-		const summedCents = firstCents + secondCents
-
-		const isMoreThan100 = summedCents >= 100
-		const eur = isMoreThan100 ? 1 : 0
-		const cents = summedCents - (isMoreThan100 ? 100 : 0)
-
-		const centDigitArray = toDigitArray(cents)
-
-		const sum: MoneyObject = {
-			eur: `${eur}`,
-			cents: `${centDigitArray[0]}${centDigitArray[1]}`
-		}
-
-		return sum
+	const value: MoneyObject = {
+		sign: sign,
+		eur: eur,
+		cents: cents,
 	}
 
-	const sumEur = (first: MoneyObject, second: MoneyObject) => {
-		const firstEur = getStringAsNumber(first.eur)
-		const secondEur = getStringAsNumber(second.eur)
-		const summedEur = firstEur + secondEur
-
-		const sum: MoneyObject = {
-			eur: `${summedEur}`,
-			cents: '00'
-		}
-
-		return sum
-	}
-
-	const firstMoney = getMoneyObject(first)
-	const secondMoney = getMoneyObject(second)
-
-	const summedCents = sumCents(firstMoney, secondMoney)
-	const summedEur = sumEur(firstMoney, secondMoney)
-	const summedEurWithCents = sumEur(summedEur, summedCents)
-
-	const sum: MoneyObject = {
-		eur: summedEurWithCents.eur,
-		cents: summedCents.cents
-	}
-
-	const value = getMoneyFromObject(sum)
 	return value
 }
 
-export const subtractMoney = (minuend: Money, subtrahend: Money) => {
+export const getMoneyFromNumber: (value: number) => Money = (value) => {
+	const sign: NumberSign = value >= 0 ? '+' : '-'
+	const eur = (value - value%1)
+	const cents = (value - eur)*100
 
+	const digitCents = toDigitArray(cents)
+
+	const result = `${sign}${eur}.${digitCents[0]}${digitCents[1]}` as Money
+	return result
+}
+
+export const getNumberFromMoney: (value: Money) => number = (value) => {
+	const sign = value.split('')[0] as NumberSign
+	const numberValue = Number(value.substring(1))
+	const result = numberValue * (sign == '+' ? 1 : -1)
+	return result
+}
+
+export const getMoneyFromObject: (money: MoneyObject) => Money = (money) => `${money.sign}${money.eur}.${money.cents}`
+
+export const sumMoney = (first: Money, second: Money) => {
+	const firstNumber = getNumberFromMoney(first)
+	const secondNumber = getNumberFromMoney(second)
+	const sum = firstNumber + secondNumber
+	const result = getMoneyFromNumber(sum)
+	return result
+}
+
+export const productMoney = (first: Money, second: Money) => {
+	const firstNumber = getNumberFromMoney(first)
+	const secondNumber = getNumberFromMoney(second)
+	const sum = firstNumber * secondNumber
+	const result = getMoneyFromNumber(sum)
+	return result
+}
+
+export const divideMoney = (first: Money, second: Money) => {
+	const firstNumber = getNumberFromMoney(first)
+	const secondNumber = getNumberFromMoney(second)
+	const sum = firstNumber / secondNumber
+	const result = getMoneyFromNumber(sum)
+	return result
 }
 
 export const sumMoneyArray: (moneys: Money[]) => Money = (moneys) => moneys
-	.reduce((previous, current) => sumMoney(previous, current), '0.00')
+	.reduce((previous, current) => sumMoney(previous, current), '+0.00')
+
+export const productMoneyArray: (moneys: Money[]) => Money = (moneys) => moneys
+	.reduce((previous, current) => productMoney(previous, current), '+0.00')
+
+export const divideMoneyMoneyArray: (moneys: Money[]) => Money = (moneys) => moneys
+	.reduce((previous, current) => divideMoney(previous, current), '+0.00')
