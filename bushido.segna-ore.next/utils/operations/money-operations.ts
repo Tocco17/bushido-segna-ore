@@ -20,7 +20,7 @@ export const getMoneyFromNumber: (value: number) => Money = (value) => {
 	const eur = (value - value%1)
 	const cents = (value - eur)*100
 
-	const digitCents = toDigitArray(cents)
+	const digitCents: Digit[] = !!cents ? toDigitArray(cents) : [0, 0]
 
 	const result = `${sign}${eur}.${digitCents[0]}${digitCents[1]}` as Money
 	return result
