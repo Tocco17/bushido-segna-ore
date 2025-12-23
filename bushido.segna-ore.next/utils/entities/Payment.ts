@@ -4,7 +4,7 @@ import { User } from "./User"
 export type Payment = {
 	day: Day
 	month: Month
-	year: Year
+	year: MillenialYear
 	schoolYear: SchoolYear
 	user: User
 }
