@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { antonio, antonioLessons } from "@/utils/db/antonio";
 import { productMoney } from "@/utils/operations/money-operations";
+import { navigate } from "next/dist/client/components/segment-cache/navigation";
+import Link from "next/link";
 import { JSX } from "react";
 
 async function getWorkedLessonHours(): Promise<number> {
@@ -47,6 +49,7 @@ export default async function Home() {
 				<DashboardCard
 					title="Lessons"
 					subtitle="Manage worked lessons"
+					link={"/lessons"}
 				>
 					<p>Total worked hours: {workedLessons}</p>
 				</DashboardCard>
@@ -54,6 +57,7 @@ export default async function Home() {
 				<DashboardCard
 					title="Payments"
 					subtitle="Check payments received and to be received"
+					link={"/payments"}
 				>
 					<>
 						<p>Total payments to receive: {paymentToReceive} €</p>
@@ -69,22 +73,28 @@ type DashboardCardProps = {
 	title: string,
 	subtitle: string,
 	children: JSX.Element,
+	link: string
 }
 
 function DashboardCard({
 	title,
 	subtitle,
 	children,
+	link,
 }: DashboardCardProps) {
 	return <>
-		<Card className="w-full max-w-sm">
-			<CardHeader>
-				<CardTitle>{title}</CardTitle>
-				<CardDescription>{subtitle}</CardDescription>
-			</CardHeader>
-			<CardContent>
-				{children}
-			</CardContent>
-		</Card>
+		<Link href={link} className="block">
+			<Card
+				className="w-full max-w-sm"
+			>
+				<CardHeader>
+					<CardTitle>{title}</CardTitle>
+					<CardDescription>{subtitle}</CardDescription>
+				</CardHeader>
+				<CardContent>
+					{children}
+				</CardContent>
+			</Card>
+		</Link>
 	</>
 }
