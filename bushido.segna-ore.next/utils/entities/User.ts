@@ -3,4 +3,5 @@ export type User = {
 	surname: string 
 	email: Email
 	role: Role
+	paymentPerHour: Money
 }
