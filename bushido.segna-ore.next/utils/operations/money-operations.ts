@@ -43,27 +43,19 @@ export const sumMoney = (first: Money, second: Money) => {
 	return result
 }
 
-export const productMoney = (first: Money, second: Money) => {
-	const firstNumber = getNumberFromMoney(first)
-	const secondNumber = getNumberFromMoney(second)
-	const sum = firstNumber * secondNumber
-	const result = getMoneyFromNumber(sum)
-	return result
-}
-
-export const divideMoney = (first: Money, second: Money) => {
-	const firstNumber = getNumberFromMoney(first)
-	const secondNumber = getNumberFromMoney(second)
-	const sum = firstNumber / secondNumber
-	const result = getMoneyFromNumber(sum)
-	return result
-}
-
 export const sumMoneyArray: (moneys: Money[]) => Money = (moneys) => moneys
 	.reduce((previous, current) => sumMoney(previous, current), '+0.00')
 
-export const productMoneyArray: (moneys: Money[]) => Money = (moneys) => moneys
-	.reduce((previous, current) => productMoney(previous, current), '+0.00')
+export const productMoney = (money: Money, factor: number) => {
+	const moneyValue = getNumberFromMoney(money)
+	const value = moneyValue * factor
+	const result = getMoneyFromNumber(value)
+	return result
+}
 
-export const divideMoneyMoneyArray: (moneys: Money[]) => Money = (moneys) => moneys
-	.reduce((previous, current) => divideMoney(previous, current), '+0.00')
+export const divideMoney = (money: Money, factor: number) => {
+	const moneyValue = getNumberFromMoney(money)
+	const value = moneyValue / factor
+	const result = getMoneyFromNumber(value)
+	return result
+}
