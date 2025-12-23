@@ -13,3 +13,9 @@ type Year = `${Digit}${Digit}${Digit}${Digit}`;
 type MillenialYear = `20${Digit}${Digit}`
 
 type CustomDate = `${Day}/${Month}/${Year}`;
+
+type CustomDateObject = {
+	day: Day,
+	month: Month,
+	year: Year,
+}

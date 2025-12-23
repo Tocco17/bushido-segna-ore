@@ -1,0 +1,1 @@
+export const getDate = ({day, month, year}: CustomDateObject) => `${day}/${month}/${year}`
