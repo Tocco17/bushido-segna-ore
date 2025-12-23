@@ -1,10 +1,10 @@
 import { toDigitArray } from "./math-operations"
 
 export const getMoneyObject: (money: Money) => MoneyObject = (money) => {
-	const sign = money.split('')[0] as NumberSign
-	const valueString = money.substring(1)
-	const eur = money.split('.')[0] as Eur
-	const cents = money.split('.')[1] as Cents
+	const sign = money[0] as NumberSign
+	const valueString = money.slice(1)
+	const eur = valueString.split('.')[0] as Eur
+	const cents = valueString.split('.')[1] as Cents
 
 	const value: MoneyObject = {
 		sign: sign,
@@ -27,8 +27,8 @@ export const getMoneyFromNumber: (value: number) => Money = (value) => {
 }
 
 export const getNumberFromMoney: (value: Money) => number = (value) => {
-	const sign = value.split('')[0] as NumberSign
-	const numberValue = Number(value.substring(1))
+	const sign = value[0] as NumberSign
+	const numberValue = Number(value.slice(1))
 	const result = numberValue * (sign == '+' ? 1 : -1)
 	return result
 }
