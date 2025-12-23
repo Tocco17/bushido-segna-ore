@@ -1,6 +1,7 @@
 import { SchoolYear } from "../entities/SchoolYear";
 
 export const schoolYear: SchoolYear = {
+	id: '1',
 	startDay: "01",
 	startMonth: "09",
 	startYear: "2025",

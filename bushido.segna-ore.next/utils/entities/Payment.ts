@@ -1,7 +1,8 @@
+import { BaseEntity } from "./BaseEntity"
 import { SchoolYear } from "./SchoolYear"
 import { User } from "./User"
 
-export type Payment = {
+export type Payment = BaseEntity & {
 	day: Day
 	month: Month
 	year: MillenialYear

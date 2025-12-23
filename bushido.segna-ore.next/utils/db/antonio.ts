@@ -4,6 +4,7 @@ import { User } from "../entities/User";
 import { schoolYear } from "./schoolYears";
 
 export const antonio: User = {
+	id: '1',
 	name: 'Antonio',
 	surname: 'Antonioni',
 	email: 'antonio.antonioni@gmail.com',
@@ -13,6 +14,7 @@ export const antonio: User = {
 
 export const antonioLessons: Lesson[] = [
 	{
+		id: '1',
 		coach: antonio,
 		day: "16",
 		month: "09",
@@ -22,6 +24,7 @@ export const antonioLessons: Lesson[] = [
 		isItPaid: true,
 	},
 	{
+		id: '2',
 		coach: antonio,
 		day: "17",
 		month: "09",
@@ -31,6 +34,7 @@ export const antonioLessons: Lesson[] = [
 		isItPaid: false,
 	},
 	{
+		id: '3',
 		coach: antonio,
 		day: "19",
 		month: "09",
@@ -43,6 +47,7 @@ export const antonioLessons: Lesson[] = [
 
 export const antonioPayments: Payment[] = [
 	{
+		id: '1',
 		day: "30",
 		month: "09",
 		year: "2025",

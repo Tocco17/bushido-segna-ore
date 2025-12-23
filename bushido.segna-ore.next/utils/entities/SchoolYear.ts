@@ -1,4 +1,6 @@
-export type SchoolYear = {
+import { BaseEntity } from "./BaseEntity"
+
+export type SchoolYear = BaseEntity & {
 	startDay: Day
 	startMonth: Month
 	startYear: MillenialYear
