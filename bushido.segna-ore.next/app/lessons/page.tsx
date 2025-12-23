@@ -1,9 +1,11 @@
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { antonioLessons } from "@/utils/db/antonio";
 import { Lesson } from "@/utils/entities/Lesson";
 import { getDate } from "@/utils/operations/date-operations";
 import { getSchoolYearCode } from "@/utils/operations/enitites/school-year-operations";
-import { Check } from "lucide-react";
+import { Check, Edit, Trash } from "lucide-react";
 
 async function getLessons(): Promise<Lesson[]> {
 	const lessons = antonioLessons
@@ -18,19 +20,28 @@ export default async function Lessons() {
 		<Table>
 			<TableHeader>
 				<TableRow>
-					<TableHead className="w-[100px]">Date</TableHead>
+					<TableHead>Date</TableHead>
 					<TableHead>Hours</TableHead>
-					<TableHead>Is it paid?</TableHead>
 					<TableHead>School year</TableHead>
+					<TableHead></TableHead>
 				</TableRow>
 			</TableHeader>
 			<TableBody>
 				{lessons.map((lesson) => (
 					<TableRow key={lesson.id}>
-						<TableCell className="font-medium">{getDate({day: lesson.day, month: lesson.month, year: lesson.year})}</TableCell>
+						<TableCell className="font-medium">{getDate({ day: lesson.day, month: lesson.month, year: lesson.year })}</TableCell>
 						<TableCell>{lesson.hours}</TableCell>
-						<TableCell>{lesson.isItPaid ? <Check /> : ''}</TableCell>
 						<TableCell>{getSchoolYearCode(lesson.schoolYear)}</TableCell>
+						<TableCell>
+							{
+								lesson.isItPaid 
+								? <Check/>
+								: <ButtonGroup>
+									<Button className="hover:text-yellow-500"><Edit /></Button>
+									<Button className="hover:text-red-500"><Trash /></Button>
+								</ButtonGroup>
+							}
+						</TableCell>
 					</TableRow>
 				))}
 			</TableBody>
