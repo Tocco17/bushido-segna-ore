@@ -1,10 +1,12 @@
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getDate } from "@/app/_utils/operations/date-operations";
 import { getSchoolYearCode } from "@/app/_utils/operations/enitites/school-year-operations";
-import { Check, Edit, Trash } from "lucide-react";
+import { Check, Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Lesson } from "@/app/_utils/entities/Lesson";
+import { Delete } from "./delete";
+
 
 type LessonTableProps = {
 	lessons: Lesson[]
@@ -37,7 +39,7 @@ export function LessonTable({
 									? <Check />
 									: <ButtonGroup>
 										<Button className="hover:text-yellow-500"><Edit /></Button>
-										<Button className="hover:text-red-500"><Trash /></Button>
+										<Delete lesson={lesson}/>
 									</ButtonGroup>
 							}
 						</TableCell>

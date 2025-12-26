@@ -1,0 +1,43 @@
+import { Lesson } from "@/app/_utils/entities/Lesson"
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button";
+import { Trash } from "lucide-react";
+
+type DeleteProps = {
+	lesson: Lesson
+}
+
+export function Delete({
+	lesson
+}: DeleteProps) {
+	return (<>
+		<AlertDialog>
+			<AlertDialogTrigger asChild>
+				<Button className="hover:text-red-500"><Trash /></Button>
+			</AlertDialogTrigger>
+			<AlertDialogContent>
+				<AlertDialogHeader>
+					<AlertDialogTitle>Are you sure?</AlertDialogTitle>
+					<AlertDialogDescription>
+						This action cannot be undone.
+						You will need to add a new lesson if deleting this was a mistake.
+					</AlertDialogDescription>
+				</AlertDialogHeader>
+				<AlertDialogFooter>
+					<AlertDialogCancel>Cancel</AlertDialogCancel>
+					<AlertDialogAction>Continue</AlertDialogAction>
+				</AlertDialogFooter>
+			</AlertDialogContent>
+		</AlertDialog>
+	</>)
+}
