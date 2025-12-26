@@ -1,4 +1,5 @@
 import { Lesson } from "@/app/_utils/entities/Lesson"
+import { getLessonDate } from "@/app/_utils/operations/enitites/lessons-operations";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -17,9 +18,9 @@ type DeleteProps = {
 	lesson: Lesson
 }
 
-export function Delete({
+export const DeleteLesson = ({
 	lesson
-}: DeleteProps) {
+}: DeleteProps) => {
 	return (<>
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -29,6 +30,7 @@ export function Delete({
 				<AlertDialogHeader>
 					<AlertDialogTitle>Are you sure?</AlertDialogTitle>
 					<AlertDialogDescription>
+						You are about to delete the lesson you have performed on date <strong>{getLessonDate(lesson)}</strong>.
 						This action cannot be undone.
 						You will need to add a new lesson if deleting this was a mistake.
 					</AlertDialogDescription>
