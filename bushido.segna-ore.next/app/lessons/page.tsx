@@ -5,7 +5,7 @@ import { antonioLessons } from "@/utils/db/antonio";
 import { Lesson } from "@/utils/entities/Lesson";
 import { getDate } from "@/utils/operations/date-operations";
 import { getSchoolYearCode } from "@/utils/operations/enitites/school-year-operations";
-import { Check, Edit, Trash } from "lucide-react";
+import { Check, Edit, Trash, Plus } from "lucide-react";
 
 async function getLessons(): Promise<Lesson[]> {
 	const lessons = antonioLessons
@@ -17,6 +17,7 @@ export default async function Lessons() {
 	const totalHours = lessons.reduce((previousHours, currentLesson) => previousHours + currentLesson.hours, 0)
 
 	return (<>
+		<Button><Plus/></Button>
 		<Table>
 			<TableHeader>
 				<TableRow>
