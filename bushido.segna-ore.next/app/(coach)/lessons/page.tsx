@@ -15,8 +15,8 @@ export default async function Lessons() {
 	const totalHours = lessons.reduce((previousHours, currentLesson) => previousHours + currentLesson.hours, 0)
 
 	return (<>
-		<Button><Plus/></Button>
-		<LessonTable 
+		<Button><Plus /></Button>
+		<LessonTable
 			lessons={lessons}
 			totalHours={totalHours}
 		/>
