@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getDate } from "@/app/_utils/operations/date-operations";
-import { getSchoolYearCode } from "@/app/_utils/operations/enitites/school-year-operations";
+import { getSchoolYearCode } from "@/app/_utils/operations/entites/school-year-operations";
 import { Lesson } from "@/app/_utils/entities/Lesson";
 import { LessonAction } from "./action";
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { Lesson } from "@/app/_utils/entities/Lesson"
-import { getLessonDate } from "@/app/_utils/operations/enitites/lessons-operations";
+import { getLessonDate } from "@/app/_utils/operations/entites/lessons-operations";
 import {
 	AlertDialog,
 	AlertDialogAction,
