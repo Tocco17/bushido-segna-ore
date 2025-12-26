@@ -1,3 +1,5 @@
+'use client'
+
 import { Lesson } from "@/app/_utils/entities/Lesson"
 import { getLessonDate } from "@/app/_utils/operations/enitites/lessons-operations";
 import {
@@ -13,6 +15,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
+import { toast } from "sonner";
 
 type DeleteProps = {
 	lesson: Lesson
@@ -21,6 +24,7 @@ type DeleteProps = {
 export const DeleteLesson = ({
 	lesson
 }: DeleteProps) => {
+
 	return (<>
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -37,7 +41,13 @@ export const DeleteLesson = ({
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel>Cancel</AlertDialogCancel>
-					<AlertDialogAction>
+					<AlertDialogAction
+						onClick={() => toast.success(
+							"Delete complete",
+							{
+								description: `Lesson on date ${getLessonDate(lesson)} has been succesfully deleted.`
+							})}
+					>
 						Continue
 					</AlertDialogAction>
 				</AlertDialogFooter>
