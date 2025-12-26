@@ -4,6 +4,7 @@ import { antonioLessons } from "@/app/_utils/db/antonio";
 import { Lesson } from "@/app/_utils/entities/Lesson";
 import { Plus } from "lucide-react";
 import { LessonTable } from "./_components/table";
+import Link from "next/link";
 
 async function getLessons(): Promise<Lesson[]> {
 	const lessons = antonioLessons
@@ -15,7 +16,9 @@ export default async function Lessons() {
 	const totalHours = lessons.reduce((previousHours, currentLesson) => previousHours + currentLesson.hours, 0)
 
 	return (<>
-		<Button><Plus /></Button>
+		<Button asChild>
+			<Link href="/lessons/add"><Plus /></Link>
+		</Button>
 		<LessonTable
 			lessons={lessons}
 			totalHours={totalHours}
