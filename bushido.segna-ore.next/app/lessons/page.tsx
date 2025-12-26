@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { antonioLessons } from "@/utils/db/antonio";
-import { Lesson } from "@/utils/entities/Lesson";
-import { getDate } from "@/utils/operations/date-operations";
-import { getSchoolYearCode } from "@/utils/operations/enitites/school-year-operations";
+import { antonioLessons } from "@/app/_utils/db/antonio";
+import { Lesson } from "@/app/_utils/entities/Lesson";
+import { getDate } from "@/app/_utils/operations/date-operations";
+import { getSchoolYearCode } from "@/app/_utils/operations/enitites/school-year-operations";
 import { Check, Edit, Trash, Plus } from "lucide-react";
 
 async function getLessons(): Promise<Lesson[]> {

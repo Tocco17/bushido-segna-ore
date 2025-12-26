@@ -1,8 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { antonio, antonioLessons } from "@/utils/db/antonio";
-import { productMoney } from "@/utils/operations/money-operations";
-import { navigate } from "next/dist/client/components/segment-cache/navigation";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { antonio, antonioLessons } from "@/app/_utils/db/antonio";
+import { productMoney } from "@/app/_utils/operations/money-operations";
 import Link from "next/link";
 import { JSX } from "react";
 
