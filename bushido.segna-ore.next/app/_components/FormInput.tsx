@@ -3,6 +3,7 @@ import { Label } from "@radix-ui/react-label"
 
 type FormInputProps = {
 	label: string
+	error?: string
 }
 	& React.ComponentProps<"input">
 
@@ -13,6 +14,7 @@ export function FormInput({
 	name,
 	required,
 	defaultValue,
+	error,
 	...props
 }: FormInputProps) {
 	return (<>
@@ -25,5 +27,6 @@ export function FormInput({
 			defaultValue={defaultValue}
 			{...props}
 		/>
+		{error && <div className="text-destructive">{error}</div>}
 	</>)
 }

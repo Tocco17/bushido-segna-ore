@@ -16,12 +16,16 @@ type FormCalendarProps = {
 	label: string
 	id: string
 	name: string
+	error?: string
+	required?: boolean
 }
 
 export function FormCalendar({
 	label,
 	id,
 	name,
+	error,
+	required,
 }: FormCalendarProps) {
 	const [open, setOpen] = React.useState(false)
 	const [date, setDate] = React.useState<Date | undefined>(undefined)
@@ -80,9 +84,11 @@ export function FormCalendar({
 				</PopoverContent>
 			</Popover>
 
-			<DateInput value={day} name={`${name}.day`}/>
-			<DateInput value={month} name={`${name}.month`}/>
-			<DateInput value={year} name={`${name}.year`}/>
+			<DateInput required={required} value={day} name={`${name}.day`}/>
+			<DateInput required={required} value={month} name={`${name}.month`}/>
+			<DateInput required={required} value={year} name={`${name}.year`}/>
+
+			{error && <div className="text-destructive">{error}</div>}
 		</div>
 	)
 }
@@ -90,9 +96,11 @@ export function FormCalendar({
 function DateInput({
 	value,
 	name,
+	required,
 }: {
 	value: number | undefined
 	name: string
+	required: boolean | undefined
 }) {
 	return <input
 		onChange={() => {}}
@@ -100,5 +108,6 @@ function DateInput({
 		value={value ?? ''}
 		name={name}
 		hidden
+		required={required}
 	/>
 }
