@@ -23,6 +23,7 @@ export function FormInput({
 			name={name}
 			required={required}
 			defaultValue={defaultValue}
+			{...props}
 		/>
 	</>)
 }

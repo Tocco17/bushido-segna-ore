@@ -97,7 +97,7 @@ function DateInput({
 	return <input
 		onChange={() => {}}
 		type="number"
-		value={value}
+		value={value ?? ''}
 		name={name}
 		hidden
 	/>
