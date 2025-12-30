@@ -1,7 +1,8 @@
 'use server'
 
-import { getLessonDate } from "@/app/_utils/operations/entites/lessons-operations"
+import { getLessonDateString } from "@/app/_utils/operations/entites/lessons-operations"
 import getLessonById from "../../_actions/get"
+import { LessonForm } from "../../_components/form"
 
 type PageProps = {
 	params: Promise<{
@@ -16,7 +17,8 @@ export default async function EditLessonPage({ params }: PageProps) {
 
 	return (<>
 		<h3>Edit page</h3>
-		<p>{getLessonDate(lesson)}</p>
-		<p>{lesson.hours}</p>
+		<LessonForm
+			lesson={lesson}
+		/>
 	</>)
 }

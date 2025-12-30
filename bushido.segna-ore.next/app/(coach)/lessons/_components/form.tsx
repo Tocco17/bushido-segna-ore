@@ -8,18 +8,22 @@ import { FormCalendar } from "@/app/_components/FormCalendar"
 import { toast } from "sonner"
 import { Lesson } from "@/app/_utils/entities/Lesson"
 import { LessonTable } from "./table"
+import { updateLesson } from "../_actions/edit"
+import { getLessonDate } from "@/app/_utils/operations/entites/lessons-operations"
 
 type LessonFormProps = {
-
+	lesson?: Lesson
 }
 
 export const LessonForm = ({
-
+	lesson
 }: LessonFormProps) => {
-	const [state, action, isPending] = useActionState(addLesson, {
-		success: false,
-		error: undefined,
-	})
+	const [state, action, isPending] = useActionState(
+		!lesson ? addLesson : updateLesson.bind(null, lesson.id),
+		{
+			success: false,
+			error: undefined,
+		})
 
 	const [lessonsAdded, setLessonsAdded] = useState<Lesson[]>()
 
@@ -47,6 +51,7 @@ export const LessonForm = ({
 				type="number"
 				name="hours"
 				required
+				defaultValue={lesson?.hours}
 				error={state.error?.hours}
 			/>
 
@@ -55,6 +60,7 @@ export const LessonForm = ({
 				label="Date"
 				name="date"
 				required
+				defaultValue={!!lesson ? getLessonDate(lesson) : undefined}
 				error={state.error?.date}
 			/>
 
