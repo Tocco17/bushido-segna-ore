@@ -6,9 +6,7 @@ import { FormInput } from "@/app/_components/FormInput"
 import { Button } from "@/components/ui/button"
 import { FormCalendar } from "@/app/_components/FormCalendar"
 import { toast } from "sonner"
-import { error } from "console"
 import { Lesson } from "@/app/_utils/entities/Lesson"
-import { Table } from "@/components/ui/table"
 import { LessonTable } from "./table"
 
 type LessonFormProps = {
