@@ -18,6 +18,7 @@ type FormCalendarProps = {
 	name: string
 	error?: string
 	required?: boolean
+	defaultValue?: Date
 }
 
 export function FormCalendar({
@@ -26,9 +27,10 @@ export function FormCalendar({
 	name,
 	error,
 	required,
+	defaultValue,
 }: FormCalendarProps) {
 	const [open, setOpen] = React.useState(false)
-	const [date, setDate] = React.useState<Date | undefined>(undefined)
+	const [date, setDate] = React.useState<Date | undefined>(defaultValue)
 
 	const [day, setDay] = React.useState<number | undefined>(undefined)
 	const [month, setMonth] = React.useState<number | undefined>(undefined)
