@@ -15,6 +15,9 @@ export default async function EditLessonPage({ params }: PageProps) {
 
 	const lesson = await getLessonById({ id })
 
+	if(!lesson)
+		throw new Error("Lesson not found.")
+
 	return (<>
 		<h3>Edit page</h3>
 		<LessonForm
