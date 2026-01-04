@@ -1,0 +1,31 @@
+Coah
+	P - Home page
+		L - Card allenamenti
+		L - Card pagamenti
+	P - Allenamenti
+		V - Lista allenamenti 
+		L - Aggiungi allenamento
+		L - Aggiungi allenamento 
+		A - Cancella allenamento  
+		P - Aggiungi allenamento
+		P - Modifica allenamento 
+	P - Pagamenti 
+		V - Pagamenti da ricevere
+		V - Pagamenti ricevuti
+
+President 
+	P - Home page 
+		L - Card allenatori 
+		L - Card pagamenti 
+	P - Allenatori
+		V - Lista allenatori 
+		P - Singolo allenatore 
+			V - Vista allenamenti 
+			V - Vista pagamenti ricevuti 
+			V - Vista pagamenti da ricevere 
+	P - Pagamenti 
+		V - Lista pagamenti fatti 
+		V - Lista pagamenti da fare
+
+Trasforma guid in un vero type guid
+
