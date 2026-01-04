@@ -1,8 +1,8 @@
 'use server'
 
-import { getLessonDateString } from "@/app/_utils/operations/entites/lessons-operations"
 import getLessonById from "../../_actions/get"
 import { LessonForm } from "../../_components/form"
+import { notFound } from "next/navigation"
 
 type PageProps = {
 	params: Promise<{
@@ -16,7 +16,7 @@ export default async function EditLessonPage({ params }: PageProps) {
 	const lesson = await getLessonById({ id })
 
 	if(!lesson)
-		throw new Error("Lesson not found.")
+		notFound()
 
 	return (<>
 		<h3>Edit page</h3>
